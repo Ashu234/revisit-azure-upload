@@ -19,8 +19,8 @@ def upload():
         return render_template('complete.html')
     return render_template('upload.html')
   
-@app.route('/Rating/<string:id>/')
-def article(id):
+@app.route('/rating/<String:id>/')
+def rating(id):
     return render_template('rating.html', id=id)
 
   
