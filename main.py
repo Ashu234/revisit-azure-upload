@@ -18,6 +18,29 @@ def upload():
     if request.method == 'POST':
         return render_template('complete.html')
     return render_template('upload.html')
+  
+class MyBlob(object):
+    url = ''
+    size = 0
+    title = ''
+    date = ''
+
+    def __init__(self, url, size, title, date):
+        self.url = url
+        self.size = (size/1024)
+        self.title = title
+        self.date = date
+
+
+@app.route('/viewImages', methods=['GET', 'POST'])
+def viewImages():
+    blobs = []
+    generators = block_blob_service.list_blobs('ashu-blob-container')
+    for blob in generators:
+        blob_url = block_blob_service.make_blob_url('ashu-blob-container', blob.name, protocol=None, sas_token=None)
+        myBlob = MyBlob(blob_url,blob.properties.content_length,blob.name,blob.properties.last_modified)
+        blobs.append(myBlob)
+    return render_template('viewImages.html', blobs=blobs)
 
 if __name__ == '__main__':
   app.run()
