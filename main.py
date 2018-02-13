@@ -6,6 +6,9 @@ import os
 
 app = Flask(__name__)
 
+block_blob_service = BlockBlobService(account_name='ashuazurestorage', account_key='HGvsHgPPFOp64gztvR6B9g+RNUUqzwhl+aNid8wpwca1uwejBMEhyVkP3oev1SKEnI5eeq4EIXWfcvzWjxAjuQ==')
+block_blob_service.set_container_acl('ashu-blob-container', public_access=PublicAccess.Container)
+
 @app.route('/')
 def hello_world():
   return render_template('home.html')
