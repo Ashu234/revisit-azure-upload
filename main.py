@@ -19,9 +19,9 @@ def upload():
         return render_template('complete.html')
     return render_template('upload.html')
   
-@app.route('/rating/<string:id>/')
-def rating(id):
-    return render_template('rating.html', id=id)
+@app.route('/rating/<string:title>/')
+def rating(title):
+    return render_template('rating.html', title=title)
 
   
 class MyBlob(object):
