@@ -23,6 +23,7 @@ def upload():
 def rating(title):
     if request.method == 'POST':
       rating = request.form['rating']
+      return redirect(url_for('complete.html', rating=rating))
     return render_template('rating.html', title=title)
 
   
