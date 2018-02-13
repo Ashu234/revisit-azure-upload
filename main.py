@@ -19,7 +19,7 @@ def upload():
         return render_template('complete.html')
     return render_template('upload.html')
   
-@app.route('/rating/<string:title>/')
+@app.route('/rating/<string:title>/', methods=['POST','GET'])
 def rating(title):
     if request.method == 'POST':
       rating = request.form['rating']
