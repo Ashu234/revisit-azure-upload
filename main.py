@@ -19,7 +19,7 @@ def upload():
         return render_template('complete.html')
     return render_template('upload.html')
   
-@app.route('/rating/<String:id>/')
+@app.route('/rating/<string:id>/')
 def rating(id):
     return render_template('rating.html', id=id)
 
