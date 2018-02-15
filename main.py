@@ -35,7 +35,7 @@ def index():
     title = 'maccafee'
     cursor = conn.cursor()
     #cursor.execute("INSERT INTO images (username, title) VALUES (%s, %s);", (username, title))
-    result = cursor.execute("SELECT * FROM inventory;")
+    result = cursor.execute("SELECT * FROM images;")
     rows = cursor.fetchall()
     conn.commit()
     cursor.close()
