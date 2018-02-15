@@ -1,1 +1,10 @@
-<h1>Welcome to Index Page</h1>
+{% extends 'layout.html' %}
+
+{% block body %}
+<h1>Articles</h1>
+<ul class="list-group">
+     {% for row in rows %}
+         <li class="list-group-item">{{row.title}}</li>
+     {% endfor %}
+</ul>
+{% endblock %}
