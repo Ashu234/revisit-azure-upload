@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request, redirect, url_for, session, logging
+from flask import Flask, render_template, request, redirect, url_for, session
 from azure.storage.blob import BlockBlobService
 from azure.storage.blob import PublicAccess
 from azure.storage.blob import ContentSettings
@@ -21,13 +21,12 @@ block_blob_service.set_container_acl('ashu-blob-container', public_access=Public
 
 @app.route('/')
 def index():
-  return redirect(url_for('login'))
+  return render_template('index.html')
 
 @app.route('/login', methods=['POST', 'GET'])
 def login():
     if request.method == 'POST':
         username = request.form['username']
-        print(username)
         session['logged_in'] = True
         session['username'] = username
         return redirect(url_for('dashboard'))
@@ -77,8 +76,6 @@ def upload():
 def rating(title):
     if request.method == 'POST':
       rating = request.form['rating']
-      app.logger.info('-----------------------------')
-      app.logger.info(rating)
       return render_template('complete.html', rating=rating)
     return render_template('rating.html', title=title)
 
