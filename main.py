@@ -34,7 +34,11 @@ def index():
     username = 'ashutosh'
     title = 'maccafee'
     cursor = conn.cursor()
-    cursor.execute("INSERT INTO images (username, title) VALUES (%s, %s);", (username, title))
+    #cursor.execute("INSERT INTO images (username, title) VALUES (%s, %s);", (username, title))
+    result = cursor.execute("SELECT * FROM inventory;")
+    if result>0:
+      rows = cursor.fetchall()
+      return render_template('index.html', rows=rows)
     conn.commit()
     cursor.close()
     conn.close()
