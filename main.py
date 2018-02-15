@@ -55,8 +55,6 @@ def upload():
           for file in request.files.getlist("file"):
                 title = request.form['title']
                 file_to_upload = file.filename
-                print('----===================-------------------------')
-                print(os.path.dirname(__file__))
                 full_path_to_file = os.path.join(os.path.dirname(__file__), file_to_upload)
                 block_blob_service.create_blob_from_path(
                 'ashu-blob-container',
