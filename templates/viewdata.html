@@ -4,7 +4,7 @@
 <h1>Articles</h1>
 <ul class="list-group">
      {% for row in rows %}
-         <li class="list-group-item">{{row[0]}}</li>
+         <li class="list-group-item">Username: {{row[0]}} Title: {{row[1]}} Date: {{row[3]}}</li>
      {% endfor %}
 </ul>
 {% endblock %}
