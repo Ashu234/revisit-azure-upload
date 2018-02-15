@@ -8,6 +8,10 @@ import os
 
 app = Flask(__name__)
 
+block_blob_service = BlockBlobService(account_name='ashuazurestorage', account_key='HGvsHgPPFOp64gztvR6B9g+RNUUqzwhl+aNid8wpwca1uwejBMEhyVkP3oev1SKEnI5eeq4EIXWfcvzWjxAjuQ==')
+#block_blob_service.create_container('ashu-blob-container', public_access=PublicAccess.Container)
+block_blob_service.set_container_acl('ashu-blob-container', public_access=PublicAccess.Container)
+
 config = {
   'host':'myserver-mysql-ashu.mysql.database.azure.com',
   'user':'root123@myserver-mysql-ashu',
@@ -41,6 +45,22 @@ def index():
     cursor.close()
     conn.close()
   return render_template('index.html')
+
+@app.route('/upload', methods=['GET', 'POST'])
+def upload():
+    if request.method == 'POST':
+        for file in request.files.getlist("file"):
+            file_to_upload = file.filename
+            full_path_to_file = os.path.join(os.path.dirname(__file__), file_to_upload)
+            app.logger.info(file_to_upload)
+            block_blob_service.create_blob_from_path(
+            'ashu-blob-container',
+            file_to_upload,
+            full_path_to_file,
+            content_settings=ContentSettings(content_type='image/png')
+            )
+        return render_template('complete.html')
+    return render_template('upload.html')
 
 
 if __name__ == '__main__':
