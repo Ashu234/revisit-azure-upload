@@ -37,7 +37,7 @@ def index():
     #cursor.execute("INSERT INTO images (username, title) VALUES (%s, %s);", (username, title))
     result = cursor.execute("SELECT * FROM images;")
     rows = cursor.fetchall()
-    return render_template('viewdata.html')
+    return render_template('viewdata.html', rows=rows)
     cursor.close()
     conn.close()
   return render_template('index.html')
