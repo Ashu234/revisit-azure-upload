@@ -4,7 +4,7 @@
 <h1>Articles</h1>
 <ul class="list-group">
      {% for row in rows %}
-         <li class="list-group-item">{{row.title}}</li>
+         <li class="list-group-item">{{row[0]}}</li>
      {% endfor %}
 </ul>
 {% endblock %}
