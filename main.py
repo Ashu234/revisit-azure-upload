@@ -102,5 +102,5 @@ def viewImages():
     return render_template('viewImages.html', blobs=blobs)
 
 if __name__ == '__main__':
-    app.secret_key = 'secretkey'
     app.run(debug=True)
+app.secret_key = 'secretkey'
